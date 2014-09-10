@@ -6,7 +6,7 @@ from HTMLParser import HTMLParser
 import logging
 import re
 
-from vkfeed.core import Error
+from RSSvk.core import Error
 
 LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)
