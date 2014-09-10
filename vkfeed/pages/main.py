@@ -9,7 +9,7 @@ import urllib
 
 import webapp2
 
-import vkfeed.utils
+import RSSvk.utils
 
 
 class MainPage(webapp2.RequestHandler):
@@ -20,7 +20,7 @@ class MainPage(webapp2.RequestHandler):
         '''Processes a GET request.'''
 
         self.response.headers[b'Content-Type'] = b'text/html; charset=utf-8'
-        self.response.out.write(vkfeed.utils.render_template('main.html'))
+        self.response.out.write(RSSvk.utils.render_template('main.html'))
 
 
     def post(self):
@@ -52,7 +52,7 @@ class MainPage(webapp2.RequestHandler):
             self.redirect('/feed/' + match.group('profile_id') + '/wall' + params)
         else:
             self.response.headers[b'Content-Type'] = b'text/html; charset=utf-8'
-            self.response.out.write(vkfeed.utils.render_template('main.html', {
+            self.response.out.write(RSSvk.utils.render_template('main.html', {
                 'post_error': '''
                     Неверно указан URL профиля.
                     Адрес должен быть вида http://vk.com/имя_профиля.
