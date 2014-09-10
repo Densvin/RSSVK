@@ -14,9 +14,9 @@ import webapp2
 
 from PyRSS2Gen import PyRSS2Gen
 
-from vkfeed import constants
-from vkfeed.core import Error
-import vkfeed.utils
+from RSSvk import constants
+from RSSvk.core import Error
+import RSSvk.utils
 
 LOG = logging.getLogger(__name__)
 
@@ -70,7 +70,7 @@ class WallPage(webapp2.RequestHandler):
             if use_api:
                 # Use VKontakte API
 
-                from vkfeed.tools import wall_reader
+                from RSSvk.tools import wall_reader
 
                 max_posts_num = 50
                 cur_time = int(time.time())
@@ -119,7 +119,7 @@ class WallPage(webapp2.RequestHandler):
             else:
                 # Parse HTML from site
 
-                from vkfeed.tools.wall_parser import WallPageParser, ParseError, PrivateGroupError, ProfileNotAvailableError, ServerError
+                from RSSvk.tools.wall_parser import WallPageParser, ParseError, PrivateGroupError, ProfileNotAvailableError, ServerError
 
                 url = constants.VK_URL + cgi.escape(profile_name)
                 url_html = '<a href="{0}" target="_blank">{0}</a>'.format(url)
@@ -130,8 +130,8 @@ class WallPage(webapp2.RequestHandler):
                     raise Error('Unsupported page.')
 
                 try:
-                    profile_page = vkfeed.utils.fetch_url(url)
-                except vkfeed.utils.HTTPNotFoundError:
+                    profile_page = RSSvk.utils.fetch_url(url)
+                except RSSvk.utils.HTTPNotFoundError:
                     http_status = httplib.NOT_FOUND
                     user_error = 'Пользователя или группы {0} не существует.'.format(url_html)
                     raise
@@ -199,7 +199,7 @@ class WallPage(webapp2.RequestHandler):
                 error = '''При генерации RSS-ленты произошла внутренняя ошибка сервера.'''
 
             self.response.headers[b'Content-Type'] = b'text/html; charset=utf-8'
-            self.response.out.write(vkfeed.utils.render_template('error.html', { 'error': error }))
+            self.response.out.write(RSSvk.utils.render_template('error.html', { 'error': error }))
         else:
             if http_status == httplib.OK:
                 self.response.headers[b'Content-Type'] = b'application/rss+xml'
