@@ -8,7 +8,7 @@ import httplib
 
 import webapp2
 
-import vkfeed.utils
+import RSSvk.utils
 
 
 class NotFoundPage(webapp2.RequestHandler):
@@ -19,7 +19,7 @@ class NotFoundPage(webapp2.RequestHandler):
 
         self.error(httplib.NOT_FOUND)
         self.response.headers[b'Content-Type'] = b'text/html; charset=utf-8'
-        self.response.out.write(vkfeed.utils.render_template('error.html', {
+        self.response.out.write(RSSvk.utils.render_template('error.html', {
             'error': '''
                 <p>Страница не найдена.</p>
 
