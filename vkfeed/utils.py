@@ -10,7 +10,7 @@ import logging
 import os
 import re
 
-if not os.getenv('VKFEED_TESTS'):
+if not os.getenv('RSSvk_TESTS'):
     import google.appengine.api.urlfetch as urlfetch
     from google.appengine.ext.webapp import template
 
