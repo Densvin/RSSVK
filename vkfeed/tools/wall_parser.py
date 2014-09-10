@@ -10,9 +10,9 @@ import logging
 import re
 import urllib
 
-from vkfeed import constants
-from vkfeed.core import Error
-from vkfeed.tools.html_parser import HTMLPageParser
+from RSSvk import constants
+from RSSvk.core import Error
+from RSSvk.tools.html_parser import HTMLPageParser
 
 LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)
