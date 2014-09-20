@@ -1,4 +1,4 @@
-application: RSSvk
+application: planar-pagoda-699
 version: 1
 runtime: python27
 threadsafe: true
